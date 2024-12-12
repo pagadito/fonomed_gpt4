@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=database
+      - DB_PORT=5432
+      - DB_NAME=fonomed_db
+      - DB_USER=admin
+      - DB_PASSWORD=secret
+    depends_on:
+      - database
+
+  database:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: fonomed_db
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
