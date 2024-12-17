@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import { useRouter  } from 'expo-router';
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const router = useRouter();
 
     const handleLogin = async () => {
         try {
@@ -46,7 +48,7 @@ export default function LoginScreen({ navigation }) {
             />
             <Button title="Login" onPress={handleLogin} />
             <View style={styles.buttonSpacer} />
-            <Button title="Register" onPress={() => navigation.navigate('Register')} />
+            <Button title="Register" onPress={() => router.navigate('./register')} />
         </View>
     );
 }

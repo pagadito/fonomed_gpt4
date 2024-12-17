@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Alert } from 'react-native';
+import {useLocalSearchParams} from "expo-router";
 
-export default function MedicalHistoryScreen({ route }) {
-    const { patientId } = route?.params ||{};
+export default function MedicalHistoryScreen() {
+    const { patientId } = useLocalSearchParams();
     const [records, setRecords] = useState([]);
 
     useEffect(() => {

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { useRouter, useLocalSearchParams  } from 'expo-router';
 
-export default function EditAppointmentScreen({ route, navigation }) {
-    const { appointmentId, existingData } = route?.params || {};
+
+export default function EditAppointmentScreen() {
+    const { appointmentId, existingData } = useLocalSearchParams();
+    const router = useRouter();
     const [title, setTitle] = useState(existingData?.title);
     const [date, setDate] = useState(existingData?.date);
     const [time, setTime] = useState(existingData?.time);
@@ -16,7 +19,7 @@ export default function EditAppointmentScreen({ route, navigation }) {
             });
             if (!response.ok) throw new Error();
             Alert.alert('Success', 'Appointment updated successfully');
-            navigation.goBack();
+            router.back();
         } catch (error) {
             Alert.alert('Error', 'Failed to update appointment');
         }

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, Button, StyleSheet, Alert } from 'react-native';
+import {useRouter} from "expo-router";
 
-export default function DashboardScreen({ navigation }) {
+export default function DashboardScreen() {
     const [appointments, setAppointments] = useState([]);
+    const router = useRouter();
 
     // Fetch appointments on mount
     useEffect(() => {
@@ -39,11 +41,11 @@ export default function DashboardScreen({ navigation }) {
             <View style={styles.buttonContainer}>
                 <Button
                     title="New Appointment"
-                    onPress={() => navigation.navigate('NewAppointment')}
+                    onPress={() => router.navigate('../appointments/new-appointment')}
                 />
             </View>
             <View style={styles.buttonContainer}>
-                <Button title="Logout" onPress={() => navigation.navigate('Login')} />
+                <Button title="Logout" onPress={() => router.navigate('../auth/login')} />
             </View>
         </View>
     );

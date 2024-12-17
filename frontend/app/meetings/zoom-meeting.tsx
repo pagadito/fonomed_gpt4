@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { View, Button, StyleSheet, Alert } from 'react-native';
 // import { ZoomVideoSdk } from '@zoom/videosdk';
 import { ZOOM_CONFIG } from '@/zoomConfig';
+import {useLocalSearchParams} from "expo-router";
 
-export default function ZoomCallScreen({ route }) {
-    const { meetingId, password } = route?.params || {};
+export default function ZoomCallScreen() {
+    const { meetingId, password } = useLocalSearchParams();
 
     useEffect(() => {
         // Initialize the Zoom SDK

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import {useRouter} from "expo-router";
 
-export default function RegisterScreen({ navigation }) {
+export default function RegisterScreen() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const router = useRouter();
 
     const handleRegister = async () => {
         try {
@@ -22,7 +24,7 @@ export default function RegisterScreen({ navigation }) {
 
             const data = await response.json();
             Alert.alert('Registration Successful', `Welcome, ${data.name}`);
-            navigation.navigate('Login');
+            router.navigate('./login');
         } catch (error) {
             Alert.alert('Error', error.message);
         }
@@ -55,7 +57,7 @@ export default function RegisterScreen({ navigation }) {
             />
             <Button title="Register" onPress={handleRegister} />
             <View style={styles.buttonSpacer} />
-            <Button title="Back to Login" onPress={() => navigation.navigate('Login')} />
+            <Button title="Back to Login" onPress={() => router.navigate('./login')} />
         </View>
     );
 }

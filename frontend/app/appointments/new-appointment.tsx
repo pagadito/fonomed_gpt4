@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { useRouter  } from 'expo-router';
 
-export default function NewAppointmentScreen({ navigation }) {
+
+export default function NewAppointmentScreen() {
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
+    const router = useRouter();
 
     const handleCreateAppointment = async () => {
         try {
@@ -15,7 +18,7 @@ export default function NewAppointmentScreen({ navigation }) {
             });
             if (!response.ok) throw new Error();
             Alert.alert('Success', 'Appointment created successfully');
-            navigation.navigate('Dashboard');
+            router.navigate('../dashboard');
         } catch (error) {
             Alert.alert('Error', 'Failed to create appointment');
         }
@@ -44,7 +47,7 @@ export default function NewAppointmentScreen({ navigation }) {
             />
             <Button title="Create Appointment" onPress={handleCreateAppointment} />
             <View style={styles.buttonSpacer} />
-            <Button title="Back to Dashboard" onPress={() => navigation.navigate('Dashboard')} />
+            <Button title="Back to Dashboard" onPress={() => router.navigate('../dashboard')} />
         </View>
     );
 }

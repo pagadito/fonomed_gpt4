@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { useRouter, useLocalSearchParams  } from 'expo-router';
 
-export default function EditProfileScreen({ route, navigation }) {
-    const { userId } = route?. params || {};
+export default function EditProfileScreen() {
+    const router = useRouter();
+    const { userId } = useLocalSearchParams();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,7 +19,7 @@ export default function EditProfileScreen({ route, navigation }) {
 
             if (!response.ok) throw new Error();
             Alert.alert('Success', 'Profile updated successfully');
-            navigation.goBack();
+            router.back();
         } catch (error) {
             Alert.alert('Error', 'Failed to update profile');
         }

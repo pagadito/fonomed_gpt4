@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import {useLocalSearchParams, useRouter} from "expo-router";
 
-export default function AddMedicalHistoryScreen({ route, navigation }) {
-    const { patientId, doctorId } = route?.params || {};
+export default function AddMedicalHistoryScreen() {
+    const router = useRouter();
+    const { patientId, doctorId } = useLocalSearchParams();
     const [diagnosis, setDiagnosis] = useState('');
     const [treatment, setTreatment] = useState('');
 
@@ -15,7 +17,7 @@ export default function AddMedicalHistoryScreen({ route, navigation }) {
             });
             if (!response.ok) throw new Error();
             Alert.alert('Success', 'Medical record added successfully');
-            navigation.goBack();
+            router.back();
         } catch (error) {
             Alert.alert('Error', 'Failed to add medical record');
         }
