@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList, StyleSheet, Alert } from 'react-native';
 
 export default function MedicalHistoryScreen({ route }) {
-    const { patientId } = route.params;
+    const { patientId } = route?.params ||{};
     const [records, setRecords] = useState([]);
 
     useEffect(() => {

@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { View, Button, StyleSheet, Alert } from 'react-native';
-import { ZoomVideoSdk } from '@zoom/videosdk';
-import { ZOOM_CONFIG } from './zoomConfig';
+// import { ZoomVideoSdk } from '@zoom/videosdk';
+import { ZOOM_CONFIG } from '@/zoomConfig';
 
 export default function ZoomCallScreen({ route }) {
-    const { meetingId, password } = route.params;
+    const { meetingId, password } = route?.params || {};
 
     useEffect(() => {
         // Initialize the Zoom SDK

@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
 
 export default function EditAppointmentScreen({ route, navigation }) {
-    const { appointmentId, existingData } = route.params;
-    const [title, setTitle] = useState(existingData.title);
-    const [date, setDate] = useState(existingData.date);
-    const [time, setTime] = useState(existingData.time);
+    const { appointmentId, existingData } = route?.params || {};
+    const [title, setTitle] = useState(existingData?.title);
+    const [date, setDate] = useState(existingData?.date);
+    const [time, setTime] = useState(existingData?.time);
 
     const handleUpdateAppointment = async () => {
         try {
